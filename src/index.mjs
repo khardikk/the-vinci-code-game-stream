@@ -98,5 +98,14 @@ class Game {
   }
 }
 
-let myGameInstance = new Game(myGameContainer);
-myGameInstance.start();
+let myGameInstance;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const playButton = document.getElementById('play-button');
+  playButton.addEventListener('click', () => {
+    if (!myGameInstance) {
+      myGameInstance = new Game(myGameContainer);
+    }
+    myGameInstance.start();
+  });
+});

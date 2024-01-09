@@ -1,0 +1,6 @@
+node_modules/
+.devcontainer/
+.parcel-cache
+dist
+.codesandbox/
+.cache/
