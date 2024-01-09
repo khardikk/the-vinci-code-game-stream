@@ -24,27 +24,28 @@ class Game {
   }
 
   handleMenuClick = function (event) {
-    switch (event.target.dataset?.val) {
-      case "1":
+    switch (event.target.id) {
+      case "start-game":
         this.updateLevel(1);
         this.gameLoop();
         break;
-      case "2":
+      case "show-leaderboard":
         console.log("Will Show Leaderboard Now...");
         break;
-      case "3":
+      case "update-name":
         this.name = prompt("Enter name to be updated:") || "Guest";
         this.displayMenu();
     }
   }.bind(this);
-
+  
   displayMenu() {
-    this.container.innerHTML = `Welcome ${this.name},
-    <ol>
-      <li data-val="1">Start New Game</li>
-      <li data-val="2">See Leaderboard</li>
-      <li data-val="3">Update Name</li>
-    </ol>`;
+    this.container.innerHTML = `
+    <h1>Welcome ${this.name}</h1>
+      <div id = "button container">
+      <button id="start-game" class="game-button">Start New Game </button>
+      <button id="show-leaderboard" class="game-button">See Leaderboard </button>
+      <button id="update-name" class="game-button">Update Name </button>
+      </div>`;
     this.container.removeEventListener("click", this.handleMenuClick);
     this.container.addEventListener("click", this.handleMenuClick);
   }
