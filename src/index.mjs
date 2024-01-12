@@ -8,10 +8,13 @@ import "./styles.css";
   c. Update Name
 */
 const myGameContainer = document.getElementById("game");
+let introDialog = document.querySelector(".dialog")
 
 class Game {
   constructor(container) {
     this.container = container;
+    this.userInputContainer = document.createElement("div");
+    this.scoreContainer = document.createElement("div");
   }
 
   randomNumber() {
@@ -58,30 +61,72 @@ class Game {
   generateNumbersForLevel() {
     for (let i = 0; i < this.level; i++) {
       this.generatedNumbers.push(this.randomNumber());
+      console.log(this.generatedNumbers);
     }
   }
 
-  displayNumbersForLevel() {
-    for (let i = 0; i < this.level; i++) {
-      alert(this.generatedNumbers[i]);
-    }
-  }
+  displayNumbersForLevel(index = 0) {
+    if (index < this.level) {
+      this.container.innerHTML = `
+        <h1>Welcome ${this.name}</h1>
+        <div id="numbers-container">
+          <div class="number">${this.generatedNumbers[index]}</div>
+        </div>`;
 
-  getNumbersFromUser() {
-    for (let i = 0; i < this.level; i++) {
-      let enteredValue = prompt(
-        "Enter values in order one at a time: (press enter after every value)",
-      );
-      if (enteredValue === "" || enteredValue === null) {
-        enteredValue = NaN;
+      setTimeout(() => {
+        this.container.innerHTML = ""; // Clear the container
+        this.displayNumbersForLevel(index + 1); // Display the next number
+      }, 2000);
+    } else {
+      this.getNumbersFromUser();
+  }
+}
+
+getNumbersFromUser() {
+  this.userInputContainer.innerHTML = ''; // Clear the container
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Enter the complete number';
+    this.userInputContainer.appendChild(input);
+
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Submit";
+    submitButton.addEventListener("click", () => {
+      this.enteredNumbers = input.value;
+      console.log(`Entered numbers: ${this.enteredNumbers}`);
+
+           // Check if entered number is correct and display the score
+           if (this.verifyLevel()) {
+            this.updateLevel(this.level + 1);
+            this.gameLoop();
+          } else {
+            this.displayScore();
+          }
+        });
+    
+        this.userInputContainer.appendChild(submitButton);
+        this.container.appendChild(this.userInputContainer);
       }
-      this.enteredNumbers.push(Number(enteredValue));
-    }
-  }
+
+    displayScore() {
+      const gameOverContainer = document.createElement('div');
+  gameOverContainer.innerHTML = `<div id="game-over">Game Over! Your final score is: ${this.level}</div>`;
+  this.container.appendChild(gameOverContainer);
+
+  // Wait for 3 seconds before going back to the menu screen
+  setTimeout(() => {
+    this.container.removeChild(gameOverContainer);
+    this.displayMenu();
+  }, 2000);
+}
 
   verifyLevel() {
+    const enteredDigits = this.enteredNumbers.split('').map(Number);
     for (let i = 0; i < this.level; i++) {
-      if (this.enteredNumbers[i] !== this.generatedNumbers[i]) return false;
+      console.log(`Comparing entered: ${enteredDigits[i]} with generated: ${this.generatedNumbers[i]}`);
+      if (enteredDigits[i] !== this.generatedNumbers[i]) {
+        return false;
+      }
     }
     return true;
   }
@@ -89,15 +134,9 @@ class Game {
   gameLoop() {
     this.generateNumbersForLevel();
     this.displayNumbersForLevel();
-    this.getNumbersFromUser();
-    if (this.verifyLevel()) {
-      this.updateLevel(this.level + 1);
-      this.gameLoop();
-    } else {
-      alert(`Your score is: ${this.level}`);
-    }
   }
 }
+
 
 let myGameInstance;
 
