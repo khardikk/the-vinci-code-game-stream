@@ -108,17 +108,30 @@ getNumbersFromUser() {
         this.container.appendChild(this.userInputContainer);
       }
 
-    displayScore() {
-      const gameOverContainer = document.createElement('div');
-  gameOverContainer.innerHTML = `<div id="game-over">Game Over! Your final score is: ${this.level}</div>`;
-  this.container.appendChild(gameOverContainer);
-
-  // Wait for 3 seconds before going back to the menu screen
-  setTimeout(() => {
-    this.container.removeChild(gameOverContainer);
-    this.displayMenu();
-  }, 2000);
-}
+      displayScore() {
+        const gameOverContainer = document.createElement('div');
+        gameOverContainer.innerHTML = `
+          <div id="game-over">Game Over! Your final score is: ${this.level}</div>
+          <div id="countdown">Exiting in <span id="countdown-value">3</span> seconds</div>
+        `;
+        this.container.appendChild(gameOverContainer);
+      
+        let countdownValue = 3;
+        const countdownElement = document.getElementById('countdown-value');
+      
+       
+        const countdownInterval = setInterval(() => {
+          countdownValue--;
+          countdownElement.textContent = countdownValue;
+      
+         
+          if (countdownValue === 0) {
+            clearInterval(countdownInterval);
+            this.container.removeChild(gameOverContainer);
+            this.displayMenu();
+          }
+        }, 1000);
+      }
 
   verifyLevel() {
     const enteredDigits = this.enteredNumbers.split('').map(Number);
