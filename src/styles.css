@@ -173,3 +173,64 @@ ol{
   border: 1px solid black;
   border-radius: 100%;
 }
+
+
+#user-input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  text-align: center;
+  width: 22rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+#submit-button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  text-align: center;
+  width: 8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(80,214,115);
+  color: rgb(0, 0, 0);
+  box-shadow: 0 .2em rgb(255, 255, 255); 
+  cursor: pointer;
+}
+
+#input-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  width: 30rem;
+  margin-bottom: 50px;
+}
+
+#end-game{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#game-over{
+  font-family: 'Reem Kufi Fun', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+#countdown{
+  font-family: 'Reem Kufi Fun', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 50px;
+}

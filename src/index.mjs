@@ -84,12 +84,17 @@ class Game {
 
 getNumbersFromUser() {
   this.userInputContainer.innerHTML = ''; // Clear the container
+
+    const inputContainer = document.createElement('div');
+    inputContainer.id = 'input-container';
     const input = document.createElement('input');
     input.type = 'text';
+    input.id = 'user-input';
     input.placeholder = 'Enter the complete number';
     this.userInputContainer.appendChild(input);
 
     const submitButton = document.createElement("button");
+    submitButton.id = "submit-button";
     submitButton.textContent = "Submit";
     submitButton.addEventListener("click", () => {
       this.enteredNumbers = input.value;
@@ -103,16 +108,22 @@ getNumbersFromUser() {
             this.displayScore();
           }
         });
-    
-        this.userInputContainer.appendChild(submitButton);
+        
+        inputContainer.appendChild(input);
+        inputContainer.appendChild(submitButton);
+      
+        this.userInputContainer.appendChild(inputContainer);
         this.container.appendChild(this.userInputContainer);
       }
 
       displayScore() {
         const gameOverContainer = document.createElement('div');
         gameOverContainer.innerHTML = `
-          <div id="game-over">Game Over! Your final score is: ${this.level}</div>
+        <div id = "end-game">
+          <div id="game-over">Game Over! <br>
+          Your final score is: ${this.level}</div>
           <div id="countdown">Exiting in <span id="countdown-value">3</span> seconds</div>
+          </div>
         `;
         this.container.appendChild(gameOverContainer);
       
