@@ -103,6 +103,10 @@ getNumbersFromUser() {
       this.enteredNumbers = input.value;
       console.log(`Entered numbers: ${this.enteredNumbers}`);
 
+        // Hide input and submit button
+    inputContainer.style.display = 'none';
+    submitButton.style.display = 'none';
+
            // Check if entered number is correct and display the score
            if (this.verifyLevel()) {
             this.updateLevel(this.level + 1);
@@ -119,19 +123,20 @@ getNumbersFromUser() {
         this.container.appendChild(this.userInputContainer);
       }
 
-      displayScore() {
+      displayScore() { 
         const gameOverContainer = document.createElement('div');
         gameOverContainer.innerHTML = `
         <div id = "end-game">
           <div id="game-over">Game Over! <br>
           Your final score is: ${this.level}</div>
-          <div id="countdown">Exiting in <span id="countdown-value">3</span> seconds</div>
+          <div id="countdown">Exiting in <span id="countdown-value">5</span> seconds</div>
           </div>
         `;
         this.container.appendChild(gameOverContainer);
       
-        let countdownValue = 3;
+        let countdownValue = 5;
         const countdownElement = document.getElementById('countdown-value');
+        
       
        
         const countdownInterval = setInterval(() => {
