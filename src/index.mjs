@@ -7,8 +7,11 @@ import "./styles.css";
   b. See Leaderboard
   c. Update Name
 */
+
+
+
 const myGameContainer = document.getElementById("game");
-let introDialog = document.querySelector(".dialog")
+
 
 class Game {
   constructor(container) {
@@ -161,15 +164,30 @@ getNumbersFromUser() {
   }
 }
 
-
-let myGameInstance;
-
 document.addEventListener('DOMContentLoaded', () => {
+  const instructionsCard = document.getElementById('instructions-card');
+  const instructionsButton = document.getElementById('instructions');
+
+  // Add event listener to open instructions card
+  instructionsButton.addEventListener('click', () => {
+      instructionsCard.style.display = 'block';
+  });
+
+  // Add event listener to close instructions card
+  const cancelBtn = document.querySelector('#instructions-card .cancel-btn');
+  cancelBtn.addEventListener('click', () => {
+      instructionsCard.style.display = 'none';
+  });
+
+  let myGameInstance;
   const playButton = document.getElementById('play-button');
+
   playButton.addEventListener('click', () => {
-    if (!myGameInstance) {
-      myGameInstance = new Game(myGameContainer);
-    }
-    myGameInstance.start();
+      if (!myGameInstance) {
+          myGameInstance = new Game(myGameContainer);
+      }
+      myGameInstance.start();
   });
 });
+
+

@@ -36,7 +36,7 @@ h1{
   align-items: center;
   justify-content: center;
   background-color: rgb(80,214,115);
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 #game{
@@ -197,7 +197,8 @@ ol{
   height: 3rem;
   text-align: center;
   width: 8rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   border: none;
   border-radius: 10px;
   background-color: rgb(80,214,115);
@@ -234,3 +235,67 @@ ol{
   font-size: 2rem;
   margin-bottom: 50px;
 }
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  border-radius: 10px;
+  text-align: left;
+}
+
+#instruction{
+  position: relative;
+}
+
+#instructions-card {
+  display: none;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  position:absolute;
+  top: -50;
+  left: 500;
+  right: -100;
+  bottom: -100;
+}
+
+#instructions-card .dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#instructions-card .h2 {
+  font-size: 1.5rem;
+}
+
+#instructions-card .cancel-btn {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+#instructions-card ul {
+  padding: 30px;
+}
+
+#instructions-card li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+#instructions-card h3 {
+  font-size: 20px;
+}
+
