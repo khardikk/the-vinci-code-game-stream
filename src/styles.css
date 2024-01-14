@@ -228,6 +228,11 @@ ol{
   padding: 20px;
 }
 
+#input-container h1{
+  font-size: 1.5rem;
+  margin-bottom: 0px;
+}
+
 #end-game{
   display: flex;
   flex-direction: column;
