@@ -360,6 +360,64 @@ ul{
   line-height: 1.5;
 }
 
+#update-name-overlay{
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  position:absolute;
+  top: -50;
+  left: 100;
+  right: 0;
+  bottom: -200;
+  color: rgb(0, 0, 0);
+}
+
+
+#update-name-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  width: 25rem;
+}
+
+#new-name-input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  text-align: center;
+  width: 22rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+#update-name-submit{
+  height: 3rem;
+  text-align: center;
+  width: 8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(80,214,115);
+  color: rgb(0, 0, 0);
+  box-shadow: 0 .2em rgb(255, 255, 255); 
+  cursor: pointer;
+}
 /* Media Queries for Responsive Design */
 
 @media only screen and (max-width: 768px) {

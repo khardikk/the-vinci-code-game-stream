@@ -41,8 +41,8 @@ class Game {
         console.log("Will Show Leaderboard Now...");
         break;
       case "update-name":
-        this.name = prompt("Enter name to be updated:") || "Guest";
-        this.displayMenu();
+        this.showUpdateNameModal();
+        break;
     }
   }.bind(this);
   
@@ -61,6 +61,39 @@ class Game {
     this.generatedNumbers = [];
     this.enteredNumbers = [];
     this.level = level;
+  }
+
+  showUpdateNameModal() {
+    const updateNameContainer = document.createElement('div');
+    updateNameContainer.innerHTML = `
+      <div id="update-name-overlay">
+        <div id="update-name-header">
+          <h1>Update Name</h1>
+          <img class="cancel-btn" src="https://img.icons8.com/color/48/cancel--v1.png" draggable="false" alt="cancel" />
+        </div>
+          <div id="update-input">
+            <input type="text" id="new-name-input" placeholder="Enter your new name" />
+            <button id="update-name-submit">Update</button>
+          </div>
+      </div>
+    `;
+    this.container.appendChild(updateNameContainer);
+
+    const closeUpdateNameButton = document.querySelector('#update-name-overlay img.cancel-btn');
+    closeUpdateNameButton.addEventListener('click', () => {
+      this.container.removeChild(updateNameContainer);
+      this.displayMenu();
+    });
+
+    const updateNameSubmitButton = document.getElementById('update-name-submit');
+    updateNameSubmitButton.addEventListener('click', () => {
+      const newName = document.getElementById('new-name-input').value;
+      if (newName) {
+        this.name = newName;
+        this.container.removeChild(updateNameContainer);
+        this.displayMenu();
+      }
+    });
   }
 
   generateNumbersForLevel() {
