@@ -174,12 +174,17 @@ getNumbersFromUser() {
 
 showLeaderboard() {
   const leaderboardData = this.getLeaderboardData();
+
+  // Calculate the highest score
+  const highestScore = leaderboardData.length > 0 ? Math.max(...leaderboardData.map(entry => entry.score)) : 0;
+
   this.leaderboardContainer.innerHTML = `
     <div id="leaderboard-overlay">
     <div id="leaderboard-header">
     <h1>Leaderboard</h1>
     <img class="cancel-btn" src="https://img.icons8.com/color/48/cancel--v1.png" draggable="false" alt="cancel" />
     </div>
+    <h1>${this.name}: highscore is ${highestScore}</h1>
     <ul id="leaderboard-list">
       ${leaderboardData.map(entry => `<li>${entry.name}: ${entry.score}</li>`).join('')}
     </ul>
