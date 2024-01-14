@@ -18,6 +18,7 @@ class Game {
     this.container = container;
     this.userInputContainer = document.createElement("div");
     this.scoreContainer = document.createElement("div");
+    this.leaderboardContainer = document.createElement("div");
   }
 
   randomNumber() {
@@ -36,6 +37,7 @@ class Game {
         this.gameLoop();
         break;
       case "show-leaderboard":
+        this.showLeaderboard();
         console.log("Will Show Leaderboard Now...");
         break;
       case "update-name":
@@ -47,7 +49,7 @@ class Game {
   displayMenu() {
     this.container.innerHTML = `
     <h1>Welcome ${this.name}</h1>
-      <div id = "button container">
+      <div id = "button-container">
       <button id="start-game" class="game-button">Start New Game </button>
       <button id="show-leaderboard" class="game-button">See Leaderboard </button>
       <button id="update-name" class="game-button">Update Name </button>
@@ -79,7 +81,7 @@ class Game {
       setTimeout(() => {
         this.container.innerHTML = ""; // Clear the container
         this.displayNumbersForLevel(index + 1); // Display the next number
-      }, 2000);
+      }, 1500);
     } else {
       this.getNumbersFromUser();
   }
@@ -133,6 +135,8 @@ getNumbersFromUser() {
           </div>
         `;
         this.container.appendChild(gameOverContainer);
+
+        this.updateLeaderboard(); // Update the leaderboard
       
         let countdownValue = 5;
         const countdownElement = document.getElementById('countdown-value');
@@ -166,7 +170,42 @@ getNumbersFromUser() {
   gameLoop() {
     this.generateNumbersForLevel();
     this.displayNumbersForLevel();
-  }
+}
+
+showLeaderboard() {
+  const leaderboardData = this.getLeaderboardData();
+  this.leaderboardContainer.innerHTML = `
+    <div id="leaderboard-overlay">
+    <div id="leaderboard-header">
+    <h1>Leaderboard</h1>
+    <img class="cancel-btn" src="https://img.icons8.com/color/48/cancel--v1.png" draggable="false" alt="cancel" />
+    </div>
+    <ul id="leaderboard-list">
+      ${leaderboardData.map(entry => `<li>${entry.name}: ${entry.score}</li>`).join('')}
+    </ul>
+    </div>
+    
+  `;
+  this.container.appendChild(this.leaderboardContainer);
+
+
+  const closeLeaderboardButton = document.querySelector('#leaderboard-overlay img.cancel-btn');
+  closeLeaderboardButton.addEventListener('click', () => {
+    this.container.removeChild(this.leaderboardContainer);
+    this.displayMenu();
+  });
+}
+
+getLeaderboardData() {
+  const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+  return leaderboardData.sort((a, b) => b.score - a.score); // Sort by score in descending order
+}
+
+updateLeaderboard() {
+  const leaderboardData = this.getLeaderboardData();
+  leaderboardData.push({ name: this.name, score: this.level });
+  localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
+}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
