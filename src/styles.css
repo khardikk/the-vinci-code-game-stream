@@ -10,6 +10,9 @@ background: -webkit-radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 2
 background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 24%, rgba(142,3,205,1) 74%, rgba(0,212,255,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#00d4ff",GradientType=1);
   color: white;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
 
 /* target id for play and instructions */
@@ -45,6 +48,7 @@ h1{
   align-items: center;
   justify-content: center;
   height: 50vh;
+  position: relative;
 }
 
 .card{
@@ -116,6 +120,8 @@ ol{
   justify-content: center;
   height: 25rem;
   width: 50rem;
+  position: relative;
+
 }
 #play-game{
   width: 100%;
@@ -187,6 +193,7 @@ ol{
   border: none;
   border-radius: 10px;
   margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 #submit-button{
@@ -212,9 +219,8 @@ ol{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 3rem;
-  width: 30rem;
-  margin-bottom: 50px;
+  height: fit-content;
+  width: fit-content;
 }
 
 #end-game{
@@ -247,9 +253,6 @@ ul{
   text-align: left;
 }
 
-#instruction{
-  position: relative;
-}
 
 #instructions-card {
   display: none;
@@ -262,10 +265,10 @@ ul{
   height: fit-content;
   margin: auto;
   position:absolute;
-  top: -50;
-  left: 500;
-  right: -100;
-  bottom: -100;
+  top: 10;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 #instructions-card .dialog-header {
@@ -305,15 +308,9 @@ ul{
   flex-direction: row;
   width: 100%;
   justify-content: center;
-  position: relative;
 }
 
 #leaderboard-overlay{
-  position: absolute;
-  top: 400;
-  left: 100;
-  right: 100;
-  bottom: 0;
   color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
@@ -327,17 +324,14 @@ ul{
   height: fit-content;
   margin: auto;
   position:absolute;
-  top: -50;
-  left: 100;
-  right: 0;
-  bottom: -200;
+  inset: 0px 0 200px 0px
 }
 
 #leaderboard-header{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: auto;
   width: 30rem;
 }
@@ -373,10 +367,7 @@ ul{
   height: fit-content;
   margin: auto;
   position:absolute;
-  top: -50;
-  left: 100;
-  right: 0;
-  bottom: -200;
+  inset: 0px 0px 0px 0px;
   color: rgb(0, 0, 0);
 }
 
@@ -385,7 +376,7 @@ ul{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: auto;
   width: 25rem;
 }
@@ -418,35 +409,170 @@ ul{
   box-shadow: 0 .2em rgb(255, 255, 255); 
   cursor: pointer;
 }
-/* Media Queries for Responsive Design */
 
+/* media query  */
 @media only screen and (max-width: 768px) {
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  #logo-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .game-button {
+    font-size: 0.5rem;
+    width: 100%;
+  }
+
+  #button-container {
+    width: 80%;
+
+  }
+
+  #main-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  #game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+  }
+
+  #play-button {
+    width: 100%;
+  }
+
+
+  #instructions-card {
+    width: fit-content;
+    inset: 400px 0px -350px 0px
+  }
+
+  #play-game{
+    height: 23rem;
+    margin-bottom: 20px;
+    width: 30rem;
+  }
+
+  #instructions{
+    height: 23rem;
+    width: 30rem;
+  }
+  
+  #leaderboard-overlay{
+    width: 80%;
+    height: fit-content;
+    inset: 0px 0 200px 0px
+  }
+
+  #update-name-overlay{
+    width: 80%;
+  }
+
+  #input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+    width: fit-content;
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.2rem;
+  }
+
+  #logo-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .game-button {
+    font-size: 1rem;
+    width: 100%;
+  }
+
   #button-container {
     width: 100%;
   }
 
-  .game-button {
+  #main-menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  #game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
     width: 100%;
   }
 
   #play-button {
     width: 80%;
   }
+
+
+  #instructions-card {
+    width: 100%;
+  }
+
+  #play-game{
+    height: 23rem;
+    width: 23rem;
+  }
+
+  #instructions{
+    height: 23rem;
+    width: 23rem;
+  }
+
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 384px) {
+  #play-game{
+    height: 20rem;
+    width: 20rem;
+  }
+
+  #instructions{
+    height: 20rem;
+    width: 20rem;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
   h1, h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   #logo-wrapper {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
+    width: 90px;
+    height: 90px;
   }
 
   .game-button {
     font-size: 1.2rem;
   }
-}
 
+  #instructions-card {
+    width: fit-content;
+  }
+
+}
