@@ -188,12 +188,13 @@ ol{
   justify-content: center;
   height: 3rem;
   text-align: center;
-  width: 22rem;
+  width: 100%;
   font-size: 1.5rem;
   border: none;
   border-radius: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 #submit-button{
@@ -216,11 +217,15 @@ ol{
 
 #input-container{
   display: flex;
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 10px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: fit-content;
+  height: 8rem;
   width: fit-content;
+  padding: 20px;
 }
 
 #end-game{
@@ -482,9 +487,9 @@ ul{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: fit-content;
-    width: fit-content;
+    justify-content: center;
+    width: 20rem;
+    height: 20rem;
   }
 }
 
@@ -541,6 +546,13 @@ ul{
   #instructions{
     height: 23rem;
     width: 23rem;
+  }
+
+  #input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
 }

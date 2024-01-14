@@ -26,8 +26,36 @@ class Game {
   }
 
   start() {
-    this.name = prompt("Enter your name:") || "Guest";
-    this.displayMenu();
+    this.showNameInput();
+  }
+
+  showNameInput() {
+    const inputContainer = document.createElement('div');
+    inputContainer.id = 'input-container';
+    const heading = document.createElement('h1');
+    heading.textContent = 'Enter your name';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'user-input';
+    input.placeholder = 'Enter your name';
+    inputContainer.appendChild(input);
+
+    const submitButton = document.createElement("button");
+    submitButton.id = "submit-button";
+    submitButton.textContent = "Submit";
+    submitButton.addEventListener("click", () => {
+      const playerName = input.value || "Guest";
+      this.name = playerName;
+      this.displayMenu();
+    });
+
+    inputContainer.appendChild(heading);
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(submitButton);
+
+    this.container.innerHTML = ''; // Clear the container
+    this.userInputContainer.appendChild(inputContainer);
+    this.container.appendChild(this.userInputContainer);
   }
 
   handleMenuClick = function (event) {
@@ -125,6 +153,8 @@ getNumbersFromUser() {
 
     const inputContainer = document.createElement('div');
     inputContainer.id = 'input-container';
+    const heading = document.createElement('h1');
+    heading.textContent = 'Enter the numbers';
     const input = document.createElement('input');
     input.type = 'text';
     input.id = 'user-input';
@@ -139,6 +169,7 @@ getNumbersFromUser() {
       console.log(`Entered numbers: ${this.enteredNumbers}`);
 
         // Hide input and submit button
+    heading.style.display = 'none';    
     inputContainer.style.display = 'none';
     submitButton.style.display = 'none';
 
@@ -151,6 +182,7 @@ getNumbersFromUser() {
           }
         });
         
+        inputContainer.appendChild(heading);
         inputContainer.appendChild(input);
         inputContainer.appendChild(submitButton);
       
@@ -250,12 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const instructionsCard = document.getElementById('instructions-card');
   const instructionsButton = document.getElementById('instructions');
 
-  // Add event listener to open instructions card
+  
   instructionsButton.addEventListener('click', () => {
       instructionsCard.style.display = 'block';
   });
 
-  // Add event listener to close instructions card
+ 
   const cancelBtn = document.querySelector('#instructions-card .cancel-btn');
   cancelBtn.addEventListener('click', () => {
       instructionsCard.style.display = 'none';
